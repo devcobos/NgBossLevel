@@ -14,8 +14,9 @@
   flex: 1;
 }
 
-.example-sidenav {
-  // background-color: var(--mdc-fab-container-color, var(--mat-sys-primary-container));
+.ng-content {
+  flex: 1;
+  padding: 1rem;
 }
 
 .example-is-mobile .example-sidenav-container {

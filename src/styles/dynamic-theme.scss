@@ -1,44 +1,86 @@
 @use '@angular/material' as mat;
 @use 'sass:math';
 
-@mixin dynamic-theme($primary-palette, $tertiary-palette) {
+// Paletas de colores
+$palettes: (
+  red: mat.$red-palette,
+  green: mat.$green-palette,
+  blue: mat.$blue-palette,
+  yellow: mat.$yellow-palette,
+  cyan: mat.$cyan-palette,
+  magenta: mat.$magenta-palette,
+  orange: mat.$orange-palette,
+  chartreuse: mat.$chartreuse-palette,
+  spring-green: mat.$spring-green-palette,
+  azure: mat.$azure-palette,
+  violet: mat.$violet-palette,
+  rose: mat.$rose-palette,
+);
+
+// Tipografía base
+$typography-config: (
+  plain-family: Roboto,
+  brand-family: Open Sans,
+  bold-weight: 900,
+  medium-weight: 500,
+  regular-weight: 300,
+);
+
+// Configuración de densidad
+$density-config: -2;
+
+// Overrides comunes
+@mixin common-overrides() {
+  @include mat.toolbar-overrides(
+    (
+      container-background-color: var(--mat-sys-primary-container),
+      container-text-color: var(--mat-sys-primary),
+    )
+  );
+
+  @include mat.sidenav-overrides(
+    (
+      container-divider-color: var(--mat-sys-outline-variant),
+      container-width: 300px,
+    )
+  );
+}
+
+// Tema dinámico
+@mixin dynamic-theme() {
   html {
     color-scheme: light dark;
+
+    // Tema claro
     @include mat.theme(
       (
         color: (
           theme-type: light,
-          primary: $primary-palette,
-          tertiary: $tertiary-palette,
+          primary: map-get($palettes, azure),
+          tertiary: map-get($palettes, blue),
         ),
-        typography: (
-          plain-family: Roboto,
-          brand-family: Open Sans,
-          bold-weight: 900,
-          medium-weight: 500,
-          regular-weight: 300,
-        ),
-        density: -2,
+        typography: $typography-config,
+        density: $density-config,
       )
     );
   }
+
   .dark-mode {
+    // Tema oscuro
     @include mat.theme(
       (
         color: (
           theme-type: dark,
-          primary: $primary-palette,
-          tertiary: $tertiary-palette,
+          primary: map-get($palettes, cyan),
+          tertiary: map-get($palettes, orange),
         ),
-        typography: (
-          plain-family: Roboto,
-          brand-family: Open Sans,
-          bold-weight: 900,
-          medium-weight: 500,
-          regular-weight: 300,
-        ),
-        density: -2,
+        typography: $typography-config,
+        density: $density-config,
       )
     );
+
+    @include common-overrides();
   }
+
+  @include common-overrides();
 }
