@@ -1,5 +1,5 @@
 @use '@angular/material' as mat;
-@import 'styles/dynamic-theme';
+@use 'styles/dynamic-theme' as theme;
 
 $red-palette: mat.$red-palette;
 $green-palette: mat.$green-palette;
@@ -14,7 +14,7 @@ $azure-palette: mat.$azure-palette;
 $violet-palette: mat.$violet-palette;
 $rose-palette: mat.$rose-palette;
 
-@include dynamic-theme($violet-palette, $magenta-palette);
+@include theme.dynamic-theme($violet-palette, $magenta-palette);
 
 html,
 body {

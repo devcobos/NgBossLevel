@@ -1,16 +1,12 @@
-@if (shouldRun) {
 <div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
-  <mat-toolbar class="example-toolbar">
-    <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
-    <h1 class="example-app-name">Responsive App</h1>
-  </mat-toolbar>
+  <sidenav-toolbar (menuClick)="snav.toggle()" />
 
-  <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+  <mat-sidenav-container class="example-sidenav-container">
     <mat-sidenav
       #snav
       [mode]="mobileQuery.matches ? 'over' : 'side'"
       [fixedInViewport]="mobileQuery.matches"
-      fixedTopGap="56"
+      fixedTopGap="48.4"
       class="example-sidenav"
     >
       <mat-nav-list>
@@ -21,8 +17,7 @@
     </mat-sidenav>
 
     <mat-sidenav-content>
-      <ng-content />
+      <ng-content class="example-sidenav-container" />
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>
-}

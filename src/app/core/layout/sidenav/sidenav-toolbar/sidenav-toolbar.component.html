@@ -1,0 +1,17 @@
+<mat-toolbar class="sidenav-toolbar">
+  <button mat-icon-button (click)="menuClick.emit()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <div class="sidenav-toolbar_app-name">
+    <h1>NgBossLevel</h1>
+  </div>
+  <span class="example-spacer"></span>
+  <button
+    mat-icon-button
+    class="example-icon favorite-icon"
+    aria-label="icon_toggle_dark_mode"
+    (click)="toggleDarkMode()"
+  >
+    <mat-icon>{{ isDarkMode ? 'dark_mode' : 'light_mode' }}</mat-icon>
+  </button>
+</mat-toolbar>
