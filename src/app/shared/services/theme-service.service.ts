@@ -17,14 +17,12 @@ export class ThemeService {
 
   private getInitialTheme(): boolean {
     const storedTheme = localStorage.getItem('darkMode');
-    if (storedTheme !== null) {
-      return storedTheme === 'true';
-    }
+    const newTheme =
+      storedTheme !== null ? storedTheme === 'true' : window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-    const systemPreference = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    this.persistTheme(systemPreference);
-    this.applyTheme(systemPreference);
-    return systemPreference;
+    this.persistTheme(newTheme);
+    this.applyTheme(newTheme);
+    return newTheme;
   }
 
   private persistTheme(isDarkMode: boolean) {
