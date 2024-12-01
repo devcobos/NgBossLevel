@@ -11,7 +11,7 @@
 }
 
 .example-toolbar {
-  background-color: rgb(229, 254, 255);
+  background-color: var(--mdc-fab-container-color, var(--mat-sys-primary-container));
 }
 
 .example-is-mobile .example-toolbar {
@@ -31,7 +31,7 @@ h1.example-app-name {
 }
 
 .example-sidenav {
-  background-color: rgb(170, 254, 254);
+  // background-color: var(--mdc-fab-container-color, var(--mat-sys-primary-container));
 }
 
 .example-is-mobile .example-sidenav-container {

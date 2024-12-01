@@ -1,4 +1,26 @@
-/* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+@import 'styles/dynamic-theme';
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+$red-palette: mat.$red-palette;
+$green-palette: mat.$green-palette;
+$blue-palette: mat.$blue-palette;
+$yellow-palette: mat.$yellow-palette;
+$cyan-palette: mat.$cyan-palette;
+$magenta-palette: mat.$magenta-palette;
+$orange-palette: mat.$orange-palette;
+$chartreuse-palette: mat.$chartreuse-palette;
+$spring-green-palette: mat.$spring-green-palette;
+$azure-palette: mat.$azure-palette;
+$violet-palette: mat.$violet-palette;
+$rose-palette: mat.$rose-palette;
+
+@include dynamic-theme($violet-palette, $magenta-palette);
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
