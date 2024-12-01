@@ -1,9 +1,7 @@
-s.sidenav-toolbar {
+.sidenav-toolbar {
   background-color: var(--mdc-fab-container-color, var(--mat-sys-primary-container));
   width: 100%;
   height: var(--mat-toolbar-mobile-height, 56px);
-  position: fixed;
-  z-index: 2;
 
   &_app-name {
     margin-left: 1rem;
