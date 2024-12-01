@@ -1,7 +1,8 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { ThemeService } from '@shared/services/theme-service.service';
 
 @Component({
   selector: 'sidenav-toolbar',
@@ -12,38 +13,13 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 export class SidenavToolbarComponent {
   @Output() menuClick = new EventEmitter<void>();
 
-  isDarkMode = false;
+  private readonly _themeService = inject(ThemeService);
 
-  constructor() {
-    // Recuperar preferencia guardada del usuario (si existe)
-    const storedPreference = localStorage.getItem('darkMode');
-
-    if (storedPreference !== null) {
-      // Usar la preferencia almacenada en localStorage
-      this.isDarkMode = storedPreference === 'true';
-    } else {
-      // Si no hay preferencia almacenada, usar la preferencia del sistema
-      this.isDarkMode = window?.matchMedia('(prefers-color-scheme: dark)')?.matches;
-    }
-
-    this.applyDarkMode();
+  get isDarkMode(): boolean {
+    return this._themeService.isDarkMode();
   }
 
   toggleDarkMode(): void {
-    // Alterna el estado del tema
-    this.isDarkMode = !this.isDarkMode;
-
-    // Aplica el tema al body
-    this.applyDarkMode();
-  }
-
-  private applyDarkMode(): void {
-    if (this.isDarkMode) {
-      document.body.classList.add('dark-mode');
-    } else {
-      document.body.classList.remove('dark-mode');
-    }
-
-    localStorage.setItem('darkMode', String(this.isDarkMode));
+    this._themeService.toggleTheme();
   }
 }
