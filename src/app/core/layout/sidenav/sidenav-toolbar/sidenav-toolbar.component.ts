@@ -15,19 +15,26 @@ export class SidenavToolbarComponent {
   isDarkMode = false;
 
   constructor() {
-    this.isDarkMode = localStorage.getItem('darkMode') === 'true';
+    // Recuperar preferencia guardada del usuario (si existe)
+    const storedPreference = localStorage.getItem('darkMode');
+
+    if (storedPreference !== null) {
+      // Usar la preferencia almacenada en localStorage
+      this.isDarkMode = storedPreference === 'true';
+    } else {
+      // Si no hay preferencia almacenada, usar la preferencia del sistema
+      this.isDarkMode = window?.matchMedia('(prefers-color-scheme: dark)')?.matches;
+    }
+
     this.applyDarkMode();
   }
 
   toggleDarkMode(): void {
-    // Alterna el estado
+    // Alterna el estado del tema
     this.isDarkMode = !this.isDarkMode;
 
     // Aplica el tema al body
     this.applyDarkMode();
-
-    // Guarda la preferencia en localStorage
-    localStorage.setItem('darkMode', String(this.isDarkMode));
   }
 
   private applyDarkMode(): void {
@@ -36,5 +43,7 @@ export class SidenavToolbarComponent {
     } else {
       document.body.classList.remove('dark-mode');
     }
+
+    localStorage.setItem('darkMode', String(this.isDarkMode));
   }
 }
