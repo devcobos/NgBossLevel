@@ -5,12 +5,17 @@ import { CustomTheme, CustomThemeStorage, DarkThemes, LightThemes } from '@core/
   providedIn: 'root',
 })
 export class ThemeService {
+  // Clave de almacenamiento en localStorage
+  private static readonly STORAGE_KEY = 'themeStorage';
+
   // Señal centralizada que almacena el estado completo de los temas
-  private readonly _themeStorage = signal<CustomThemeStorage>({
-    ligthTheme: LightThemes[0],
-    darkTheme: DarkThemes[0],
-    isDarkMode: this.getPrefersColorSchemeDark(),
-  });
+  private readonly _themeStorage = signal<CustomThemeStorage>(
+    this.loadThemeFromStorage() || {
+      ligthTheme: LightThemes[0],
+      darkTheme: DarkThemes[0],
+      isDarkMode: this.getPrefersColorSchemeDark(),
+    }
+  );
 
   constructor() {
     // Efecto para aplicar el tema actual automáticamente cuando cambia el estado
@@ -18,6 +23,9 @@ export class ThemeService {
       const storage = this._themeStorage();
       const themeClass = storage.isDarkMode ? storage.darkTheme.class : storage.ligthTheme.class;
       this.applyTheme(themeClass);
+
+      // Persistir en localStorage
+      this.saveThemeToStorage(storage);
     });
   }
 
@@ -72,5 +80,16 @@ export class ThemeService {
 
   private getPrefersColorSchemeDark(): boolean {
     return window.matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+
+  // Cargar el estado desde localStorage
+  private loadThemeFromStorage(): CustomThemeStorage | null {
+    const storedData = localStorage.getItem(ThemeService.STORAGE_KEY);
+    return storedData ? JSON.parse(storedData) : null;
+  }
+
+  // Guardar el estado en localStorage
+  private saveThemeToStorage(storage: CustomThemeStorage): void {
+    localStorage.setItem(ThemeService.STORAGE_KEY, JSON.stringify(storage));
   }
 }
