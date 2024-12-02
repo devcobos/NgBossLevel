@@ -10,6 +10,19 @@
     mat-icon-button
     class="example-icon favorite-icon"
     aria-label="icon_toggle_dark_mode"
+    [matMenuTriggerFor]="beforeMenu"
+  >
+    <mat-icon>format_color_fill</mat-icon>
+  </button>
+  <mat-menu #beforeMenu="matMenu" [yPosition]="yPosition" [xPosition]="xPosition">
+    @for (theme of avalibleThemes; track $index) {
+    <button mat-menu-item (click)="setTheme(theme)">{{ theme.displayableName }}</button>
+    }
+  </mat-menu>
+  <button
+    mat-icon-button
+    class="example-icon favorite-icon"
+    aria-label="icon_toggle_dark_mode"
     (click)="toggleDarkMode()"
   >
     <mat-icon>

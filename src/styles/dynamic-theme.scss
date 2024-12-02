@@ -1,5 +1,6 @@
 @use '@angular/material' as mat;
 @use 'sass:math';
+@use 'sass:map';
 
 // Paletas de colores
 $palettes: (
@@ -20,6 +21,60 @@ $palettes: (
 // Configuración de densidad
 $density-config: -2;
 
+$light-themes: (
+  'azure-blue': (
+    primary: mat.$azure-palette,
+    tertiary: mat.$blue-palette,
+  ),
+  'red-cyan': (
+    primary: mat.$red-palette,
+    tertiary: mat.$cyan-palette,
+  ),
+  'green-magenta': (
+    primary: mat.$green-palette,
+    tertiary: mat.$magenta-palette,
+  ),
+  'blue-orange': (
+    primary: mat.$blue-palette,
+    tertiary: mat.$orange-palette,
+  ),
+  'yellow-violet': (
+    primary: mat.$yellow-palette,
+    tertiary: mat.$violet-palette,
+  ),
+  'chartreuse-spring-green': (
+    primary: mat.$chartreuse-palette,
+    tertiary: mat.$spring-green-palette,
+  ),
+);
+
+$dark-themes: (
+  'cyan-orange': (
+    primary: mat.$cyan-palette,
+    tertiary: mat.$orange-palette,
+  ),
+  'magenta-chartreuse': (
+    primary: mat.$magenta-palette,
+    tertiary: mat.$chartreuse-palette,
+  ),
+  'rose-yellow': (
+    primary: mat.$rose-palette,
+    tertiary: mat.$yellow-palette,
+  ),
+  'violet-azure': (
+    primary: mat.$violet-palette,
+    tertiary: mat.$azure-palette,
+  ),
+  'spring-green-blue': (
+    primary: mat.$spring-green-palette,
+    tertiary: mat.$blue-palette,
+  ),
+  'orange-red': (
+    primary: mat.$orange-palette,
+    tertiary: mat.$red-palette,
+  ),
+);
+
 // Overrides comunes
 @mixin common-overrides() {
   @include mat.toolbar-overrides(
@@ -37,42 +92,46 @@ $density-config: -2;
   );
 }
 
-// Tema dinámico
 @mixin dynamic-theme() {
   html {
     color-scheme: light dark;
 
-    // Tema claro
-    @include mat.theme(
-      (
-        color: (
-          theme-type: light,
-          primary: mat.$azure-palette,
-          tertiary: mat.$blue-palette,
-        ),
-        typography: 'Noto Sans',
-        density: $density-config,
-      )
-    );
+    // Generar temas claros
+    @each $name, $theme in $light-themes {
+      .#{$name}-light-theme {
+        @include mat.theme(
+          (
+            color: (
+              theme-type: light,
+              primary: map.get($theme, primary),
+              tertiary: map.get($theme, tertiary),
+            ),
+            typography: 'Noto Sans',
+            density: $density-config,
+          )
+        );
+
+        @include common-overrides();
+      }
+    }
   }
 
-  .dark-mode {
-    // Tema oscuro
-    @include mat.theme(
-      (
-        color: (
-          theme-type: dark,
-          primary: mat.$cyan-palette,
-          tertiary: mat.$orange-palette,
-        ),
-        typography: 'Noto Sans',
+  // Generar temas oscuros
+  @each $name, $theme in $dark-themes {
+    .#{$name}-dark-theme {
+      @include mat.theme(
+        (
+          color: (
+            theme-type: dark,
+            primary: map.get($theme, primary),
+            tertiary: map.get($theme, tertiary),
+          ),
+          typography: 'Noto Sans',
+          density: $density-config,
+        )
+      );
 
-        density: $density-config,
-      )
-    );
-
-    @include common-overrides();
+      @include common-overrides();
+    }
   }
-
-  @include common-overrides();
 }

@@ -1,17 +1,22 @@
 import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule, MenuPositionX, MenuPositionY } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { ThemeService } from '@shared/services/theme-service.service';
+import { CustomTheme } from '@core/models/themes/theme.model';
+import { ThemeService } from '@core/services/theme-service.service';
 
 @Component({
   selector: 'sidenav-toolbar',
-  imports: [MatToolbarModule, MatButtonModule, MatIconModule],
+  imports: [MatToolbarModule, MatButtonModule, MatIconModule, MatMenuModule],
   templateUrl: './sidenav-toolbar.component.html',
   styleUrl: './sidenav-toolbar.component.scss',
 })
 export class SidenavToolbarComponent {
   @Output() menuClick = new EventEmitter<void>();
+
+  xPosition: MenuPositionX = 'before';
+  yPosition: MenuPositionY = 'below';
 
   private readonly _themeService = inject(ThemeService);
 
@@ -19,7 +24,15 @@ export class SidenavToolbarComponent {
     return this._themeService.isDarkMode();
   }
 
+  get avalibleThemes() {
+    return this._themeService.getAvailableThemes();
+  }
+
   toggleDarkMode(): void {
-    this._themeService.toggleTheme();
+    this._themeService.toggleDarkMode();
+  }
+
+  setTheme(theme: CustomTheme): void {
+    this._themeService.setTheme(theme);
   }
 }
