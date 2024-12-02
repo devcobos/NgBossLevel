@@ -4,36 +4,42 @@ export interface CustomTheme {
   displayableName: string;
 }
 
+export interface CustomThemeStorage {
+  ligthTheme: CustomTheme;
+  darkTheme: CustomTheme;
+  isDarkMode: boolean;
+}
+
 export const LightThemes = Object.freeze<CustomTheme[]>([
   {
     id: 'azure-blue-light',
     class: 'azure-blue-light-theme',
-    displayableName: 'Azure Blue',
+    displayableName: 'Azure & Blue',
   },
   {
     id: 'red-cyan-light',
     class: 'red-cyan-light-theme',
-    displayableName: 'Red Cyan',
+    displayableName: 'Red & Cyan',
   },
   {
     id: 'green-magenta-light',
     class: 'green-magenta-light-theme',
-    displayableName: 'Green Magenta',
+    displayableName: 'Green & Magenta',
   },
   {
     id: 'blue-orange-light',
     class: 'blue-orange-light-theme',
-    displayableName: 'Blue Orange',
+    displayableName: 'Blue & Orange',
   },
   {
     id: 'yellow-violet-light',
     class: 'yellow-violet-light-theme',
-    displayableName: 'Yellow Violet',
+    displayableName: 'Yellow & Violet',
   },
   {
     id: 'chartreuse-spring-green-light',
     class: 'chartreuse-spring-green-light-theme',
-    displayableName: 'Chartreuse SpringGreen',
+    displayableName: 'Chartreuse & SpringGreen',
   },
 ]);
 
@@ -41,31 +47,31 @@ export const DarkThemes = Object.freeze<CustomTheme[]>([
   {
     id: 'cyan-orange-dark',
     class: 'cyan-orange-dark-theme',
-    displayableName: 'Cyan Orange',
+    displayableName: 'Cyan & Orange',
   },
   {
     id: 'magenta-chartreuse-dark',
     class: 'magenta-chartreuse-dark-theme',
-    displayableName: 'Magenta Chartreuse',
+    displayableName: 'Magenta & Chartreuse',
   },
   {
     id: 'rose-yellow-dark',
     class: 'rose-yellow-dark-theme',
-    displayableName: 'Rose Yellow',
+    displayableName: 'Rose & Yellow',
   },
   {
     id: 'violet-azure-dark',
     class: 'violet-azure-dark-theme',
-    displayableName: 'Violet Azure',
+    displayableName: 'Violet & Azure',
   },
   {
     id: 'spring-green-blue-dark',
     class: 'spring-green-blue-dark-theme',
-    displayableName: 'Spring Green Blue',
+    displayableName: 'SpringGreen & Blue',
   },
   {
     id: 'orange-red-dark',
     class: 'orange-red-dark-theme',
-    displayableName: 'Orange Red',
+    displayableName: 'Orange & Red',
   },
 ]);

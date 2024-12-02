@@ -1,53 +1,65 @@
 import { effect, Injectable, signal } from '@angular/core';
-import { CustomTheme, DarkThemes, LightThemes } from '@core/models/themes/theme.model';
+import { CustomTheme, CustomThemeStorage, DarkThemes, LightThemes } from '@core/models/themes/theme.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ThemeService {
-  private readonly _isDarkMode = signal(false);
-  private readonly _currentTheme = signal<CustomTheme>(LightThemes[0]);
-  private readonly _availableThemes = signal<readonly CustomTheme[]>(LightThemes);
+  // Señal centralizada que almacena el estado completo de los temas
+  private readonly _themeStorage = signal<CustomThemeStorage>({
+    ligthTheme: LightThemes[0],
+    darkTheme: DarkThemes[0],
+    isDarkMode: this.getPrefersColorSchemeDark(),
+  });
 
   constructor() {
-    // Efecto para aplicar automáticamente el tema cuando cambia
+    // Efecto para aplicar el tema actual automáticamente cuando cambia el estado
     effect(() => {
-      const theme = this._currentTheme();
-      this.applyTheme(theme.class);
-    });
-
-    // Efecto para actualizar la lista de temas disponibles cuando cambia el modo
-    effect(() => {
-      const themes = this._isDarkMode() ? DarkThemes : LightThemes;
-      this._availableThemes.set(themes);
+      const storage = this._themeStorage();
+      const themeClass = storage.isDarkMode ? storage.darkTheme.class : storage.ligthTheme.class;
+      this.applyTheme(themeClass);
     });
   }
 
-  get isDarkMode() {
-    return this._isDarkMode.asReadonly();
+  // Getters para acceder a partes del estado de forma reactiva
+  get isDarkMode(): boolean {
+    return this._themeStorage().isDarkMode;
   }
 
-  get getCurrentTheme() {
-    return this._currentTheme.asReadonly();
+  get getCurrentTheme(): CustomTheme {
+    return this._themeStorage().isDarkMode ? this._themeStorage().darkTheme : this._themeStorage().ligthTheme;
   }
 
-  get getAvailableThemes() {
-    return this._availableThemes.asReadonly();
+  get getAvailableThemes(): readonly CustomTheme[] {
+    return this._themeStorage().isDarkMode ? DarkThemes : LightThemes;
   }
 
+  // Alternar entre modo claro y oscuro
   toggleDarkMode(): void {
-    const newDarkMode = !this._isDarkMode();
-    this._isDarkMode.set(newDarkMode);
-
-    // Cambia al primer tema del conjunto correspondiente
-    const theme = newDarkMode ? DarkThemes[0] : LightThemes[0];
-    this._currentTheme.set(theme);
+    const storage = this._themeStorage();
+    this._themeStorage.set({
+      ...storage,
+      isDarkMode: !storage.isDarkMode,
+    });
   }
 
+  // Establecer un tema personalizado para el modo actual
   setTheme(theme: CustomTheme): void {
-    this._currentTheme.set(theme);
+    const storage = this._themeStorage();
+    if (storage.isDarkMode) {
+      this._themeStorage.set({
+        ...storage,
+        darkTheme: theme,
+      });
+    } else {
+      this._themeStorage.set({
+        ...storage,
+        ligthTheme: theme,
+      });
+    }
   }
 
+  // Aplicar la clase del tema al body
   private applyTheme(themeClass: string): void {
     document.body.classList.forEach((className) => {
       if (className.endsWith('-theme')) {
@@ -56,5 +68,9 @@ export class ThemeService {
     });
 
     document.body.classList.add(themeClass);
+  }
+
+  private getPrefersColorSchemeDark(): boolean {
+    return window.matchMedia('(prefers-color-scheme: dark)').matches;
   }
 }

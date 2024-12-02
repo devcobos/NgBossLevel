@@ -21,11 +21,11 @@ export class SidenavToolbarComponent {
   private readonly _themeService = inject(ThemeService);
 
   get isDarkMode(): boolean {
-    return this._themeService.isDarkMode();
+    return this._themeService.isDarkMode;
   }
 
   get avalibleThemes() {
-    return this._themeService.getAvailableThemes();
+    return this._themeService.getAvailableThemes;
   }
 
   toggleDarkMode(): void {
