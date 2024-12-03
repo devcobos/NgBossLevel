@@ -75,21 +75,59 @@ $dark-themes: (
   ),
 );
 
-// Overrides comunes
-@mixin common-overrides() {
+@mixin scrollbar-overrides() {
+  // * {
+  //   scrollbar-width: thin; // Compatibilidad con Firefox
+  //   scrollbar-color: var(--mat-sys-primary-container); // Colores para Firefox
+  // }
+
+  *::-webkit-scrollbar {
+    width: 8px; // Ancho de la barra
+    height: 8px; // Alto de la barra (en scroll horizontal)
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: var(--mat-sys-surface-container-highest);
+    border-radius: 1rem;
+    border: 1px solid var(--mat-sys-secondary);
+  }
+
+  *::-webkit-scrollbar-track {
+    background: var(--mat-sys-surface-container);
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    cursor: pointer;
+  }
+
+  *::-webkit-scrollbar-thumb:active {
+    background-color: var(--mat-sys-secondary); /* Color diferente cuando se arrastra */
+  }
+}
+
+@mixin toolbar-overrides() {
   @include mat.toolbar-overrides(
     (
       container-background-color: var(--mat-sys-primary-container),
       container-text-color: var(--mat-sys-primary),
     )
   );
+}
 
+@mixin sidenav-overrides() {
   @include mat.sidenav-overrides(
     (
       container-divider-color: var(--mat-sys-outline-variant),
       container-width: 300px,
     )
   );
+}
+
+// Overrides comunes
+@mixin common-overrides() {
+  @include toolbar-overrides();
+  @include sidenav-overrides();
+  @include scrollbar-overrides();
 }
 
 @mixin dynamic-theme() {
