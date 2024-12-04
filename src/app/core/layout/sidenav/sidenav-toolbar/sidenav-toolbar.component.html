@@ -1,17 +1,15 @@
 <mat-toolbar class="sidenav-toolbar">
-  <button mat-icon-button (click)="menuClick.emit()">
-    <mat-icon>menu</mat-icon>
-  </button>
+  <shared-toggle-button
+    primaryIcon="menu"
+    secondaryIcon="menu_open"
+    (toggle)="menuClick.emit()"
+    label="menu-toogle-button"
+  />
   <div class="sidenav-toolbar_app-name">
     <h1>NgBossLevel</h1>
   </div>
   <span class="example-spacer"></span>
-  <button
-    mat-icon-button
-    class="example-icon favorite-icon"
-    aria-label="icon_toggle_dark_mode"
-    [matMenuTriggerFor]="beforeMenu"
-  >
+  <button mat-icon-button aria-label="icon_toggle_dark_mode" [matMenuTriggerFor]="beforeMenu">
     <mat-icon>format_color_fill</mat-icon>
   </button>
   <mat-menu #beforeMenu="matMenu" [yPosition]="yPosition" [xPosition]="xPosition">
@@ -19,23 +17,16 @@
     <button mat-menu-item (click)="setTheme(theme)">{{ theme.displayableName }}</button>
     }
   </mat-menu>
-  <button
-    mat-icon-button
-    class="example-icon favorite-icon"
-    aria-label="icon_toggle_dark_mode"
-    (click)="toggleDarkMode()"
-  >
-    <mat-icon>
-      {{ isDarkMode ? 'dark_mode' : 'light_mode' }}
-    </mat-icon>
-  </button>
-  <a
-    mat-icon-button
-    class="example-icon favorite-icon"
-    aria-label="Toggle dark mode"
-    href="https://github.com/devcobos/NgBossLevel"
-    target="_blank"
-  >
+
+  <shared-toggle-button
+    label="dark-light-theme-toogle-button"
+    primaryIcon="dark_mode"
+    secondaryIcon="light_mode"
+    [isPrimary]="isDarkMode"
+    (toggle)="toggleDarkMode()"
+  />
+
+  <a mat-icon-button aria-label="github" href="https://github.com/devcobos/NgBossLevel" target="_blank">
     <mat-icon>
       <svg aria-hidden="true" class="github-logo" viewBox="0 0 20 20">
         <path

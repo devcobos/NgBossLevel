@@ -1,0 +1,7 @@
+<button mat-icon-button (click)="onToggle()" [attr.aria-label]="label">
+  @if (isPrimary) {
+  <mat-icon>{{ primaryIcon }}</mat-icon>
+  } @else {
+  <mat-icon>{{ secondaryIcon }}</mat-icon>
+  }
+</button>

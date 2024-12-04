@@ -5,10 +5,11 @@ import { MatMenuModule, MenuPositionX, MenuPositionY } from '@angular/material/m
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { CustomTheme } from '@core/models/themes/theme.model';
 import { ThemeService } from '@core/services/theme-service.service';
+import { ToggleButtonComponent } from '@shared/components/toggle-button/toggle-button.component';
 
 @Component({
   selector: 'sidenav-toolbar',
-  imports: [MatToolbarModule, MatButtonModule, MatIconModule, MatMenuModule],
+  imports: [MatToolbarModule, MatButtonModule, MatIconModule, MatMenuModule, ToggleButtonComponent],
   templateUrl: './sidenav-toolbar.component.html',
   styleUrl: './sidenav-toolbar.component.scss',
 })

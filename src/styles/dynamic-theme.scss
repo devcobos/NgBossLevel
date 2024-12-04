@@ -76,19 +76,13 @@ $dark-themes: (
 );
 
 @mixin scrollbar-overrides() {
-  // * {
-  //   scrollbar-width: thin; // Compatibilidad con Firefox
-  //   scrollbar-color: var(--mat-sys-primary-container); // Colores para Firefox
-  // }
-
   *::-webkit-scrollbar {
-    width: 8px; // Ancho de la barra
-    height: 8px; // Alto de la barra (en scroll horizontal)
+    width: 0.4em;
   }
 
   *::-webkit-scrollbar-thumb {
     background-color: var(--mat-sys-surface-container-highest);
-    border-radius: 1rem;
+    border-radius: 0.4rem;
     border: 1px solid var(--mat-sys-secondary);
   }
 
