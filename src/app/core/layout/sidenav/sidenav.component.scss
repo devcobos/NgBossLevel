@@ -14,7 +14,7 @@
   &__content {
     flex: 1; /* Ocupa todo el espacio restante */
     overflow: auto; /* Habilita scroll si el contenido excede el espacio visible */
-    padding: 1rem; /* Espaciado interno dinámico */
+    padding: 0.8rem; /* Espaciado interno dinámico */
     box-sizing: border-box; /* Asegura que el padding no afecte el tamaño total */
   }
 }
