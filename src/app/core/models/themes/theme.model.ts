@@ -17,9 +17,14 @@ export const LightThemes = Object.freeze<CustomTheme[]>([
     displayableName: 'Azure & Blue',
   },
   {
-    id: 'red-cyan-light',
-    class: 'red-cyan-light-theme',
-    displayableName: 'Red & Cyan',
+    id: 'blue-orange-light',
+    class: 'blue-orange-light-theme',
+    displayableName: 'Blue & Orange',
+  },
+  {
+    id: 'chartreuse-spring-green-light',
+    class: 'chartreuse-spring-green-light-theme',
+    displayableName: 'Chartreuse & SpringGreen',
   },
   {
     id: 'green-magenta-light',
@@ -27,19 +32,14 @@ export const LightThemes = Object.freeze<CustomTheme[]>([
     displayableName: 'Green & Magenta',
   },
   {
-    id: 'blue-orange-light',
-    class: 'blue-orange-light-theme',
-    displayableName: 'Blue & Orange',
+    id: 'red-cyan-light',
+    class: 'red-cyan-light-theme',
+    displayableName: 'Red & Cyan',
   },
   {
     id: 'yellow-violet-light',
     class: 'yellow-violet-light-theme',
     displayableName: 'Yellow & Violet',
-  },
-  {
-    id: 'chartreuse-spring-green-light',
-    class: 'chartreuse-spring-green-light-theme',
-    displayableName: 'Chartreuse & SpringGreen',
   },
 ]);
 
@@ -55,14 +55,14 @@ export const DarkThemes = Object.freeze<CustomTheme[]>([
     displayableName: 'Magenta & Chartreuse',
   },
   {
+    id: 'orange-red-dark',
+    class: 'orange-red-dark-theme',
+    displayableName: 'Orange & Red',
+  },
+  {
     id: 'rose-yellow-dark',
     class: 'rose-yellow-dark-theme',
     displayableName: 'Rose & Yellow',
-  },
-  {
-    id: 'violet-azure-dark',
-    class: 'violet-azure-dark-theme',
-    displayableName: 'Violet & Azure',
   },
   {
     id: 'spring-green-blue-dark',
@@ -70,8 +70,8 @@ export const DarkThemes = Object.freeze<CustomTheme[]>([
     displayableName: 'SpringGreen & Blue',
   },
   {
-    id: 'orange-red-dark',
-    class: 'orange-red-dark-theme',
-    displayableName: 'Orange & Red',
+    id: 'violet-azure-dark',
+    class: 'violet-azure-dark-theme',
+    displayableName: 'Violet & Azure',
   },
 ]);
