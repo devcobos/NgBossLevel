@@ -2,9 +2,9 @@
   <!-- Sidenav -->
   <mat-sidenav
     #snav
-    [mode]="!getIsMobile ? 'over' : 'side'"
-    [fixedInViewport]="getIsMobile"
-    fixedTopGap="var(--toolbar-height)"
+    [mode]="getIsMobile ? 'over' : 'side'"
+    [fixedInViewport]="true"
+    fixedTopGap="48.4"
     class="sidenav-container__sidenav"
   >
     <sidenav-navigation></sidenav-navigation>
