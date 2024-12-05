@@ -1,0 +1,7 @@
+<mat-list-item>
+  <span matListItemTitle>{{ item.label }}</span>
+  <!-- <mat-icon matListItemIcon>folder</mat-icon> -->
+  @for (subItem of item.subItems; track subItem) {
+    <a mat-list-item>{{ subItem.label }}</a>
+  }
+</mat-list-item>

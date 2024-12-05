@@ -15,6 +15,9 @@ export class SidenavComponent {
 
   private _mobileQueryListener: () => void;
 
+  get getIsMobile(): boolean {
+    return this.mobileQuery.matches;
+  }
   private readonly _changeDetectorRef = inject(ChangeDetectorRef);
   private readonly _media = inject(MediaMatcher);
 

@@ -1,24 +1,20 @@
-@use '@angular/material' as mat;
-
-.example-container {
+.sidenav-container {
   display: flex;
-  flex-direction: column;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-}
+  flex: 1; /* Ocupa todo el espacio disponible proporcionado por el padre */
+  height: 100%; /* Garantiza que ocupe la altura total */
+  overflow: hidden; /* Evita desbordamientos accidentales */
 
-.example-sidenav-container {
-  flex: 1;
-}
+  &__sidenav {
+    width: 250px; /* Ancho fijo del sidenav */
+    height: calc(100vh - var(--toolbar-height)); /* Ajusta al espacio disponible */
+    overflow: auto; /* Habilita scroll si el contenido excede el espacio */
+    flex-shrink: 0; /* Evita que se colapse */
+  }
 
-.ng-content {
-  flex: 1;
-  padding: 1rem;
-}
-
-.example-is-mobile .example-sidenav-container {
-  flex: 1 0 auto;
+  &__content {
+    flex: 1; /* Ocupa todo el espacio restante */
+    overflow: auto; /* Habilita scroll si el contenido excede el espacio visible */
+    padding: 1rem; /* Espaciado interno dinámico */
+    box-sizing: border-box; /* Asegura que el padding no afecte el tamaño total */
+  }
 }

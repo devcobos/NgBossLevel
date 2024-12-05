@@ -1,6 +1,8 @@
-@use '@angular/material' as mat;
+:root {
+  --toolbar-height: 48.4px;
+}
 
-.example-container {
+.layout__container {
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -8,4 +10,22 @@
   bottom: 0;
   left: 0;
   right: 0;
+}
+
+.layout__toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--toolbar-height); /* Altura dinámica basada en la variable */
+  z-index: 2; /* Siempre encima de otros elementos */
+  background-color: #fff; /* Ejemplo de color de fondo */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra opcional */
+}
+
+.layout__sidenav {
+  display: flex;
+  flex: 1; /* Ocupa todo el espacio restante */
+  margin-top: var(--toolbar-height); /* Espaciado dinámico bajo el toolbar */
+  overflow: hidden; /* Controla el desbordamiento */
 }

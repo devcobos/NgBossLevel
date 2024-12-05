@@ -1,15 +1,17 @@
-<mat-sidenav-container class="example-sidenav-container">
+<mat-sidenav-container class="sidenav-container">
+  <!-- Sidenav -->
   <mat-sidenav
     #snav
-    [mode]="mobileQuery.matches ? 'over' : 'side'"
-    [fixedInViewport]="mobileQuery.matches"
-    fixedTopGap="48.4"
-    class="example-sidenav"
+    [mode]="!getIsMobile ? 'over' : 'side'"
+    [fixedInViewport]="getIsMobile"
+    fixedTopGap="var(--toolbar-height)"
+    class="sidenav-container__sidenav"
   >
-    <sidenav-navigation />
+    <sidenav-navigation></sidenav-navigation>
   </mat-sidenav>
 
-  <mat-sidenav-content class="ng-content">
-    <ng-content />
+  <!-- Contenido Principal -->
+  <mat-sidenav-content class="sidenav-container__content">
+    <ng-content></ng-content>
   </mat-sidenav-content>
 </mat-sidenav-container>
