@@ -1,11 +1,6 @@
 .layout__container {
   display: flex;
   flex-direction: column;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
 }
 
 .layout__toolbar {
@@ -22,6 +17,5 @@
 .layout__sidenav {
   display: flex;
   flex: 1; /* Ocupa todo el espacio restante */
-  margin-top: var(--toolbar-height); /* Espaciado dinámico bajo el toolbar */
   overflow: hidden; /* Controla el desbordamiento */
 }

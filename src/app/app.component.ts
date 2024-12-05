@@ -10,6 +10,4 @@ import { LayoutComponent } from './core/layout/layout.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent {
-  title = 'NgBossLevel';
-}
+export class AppComponent {}
