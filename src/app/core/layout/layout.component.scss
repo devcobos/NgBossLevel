@@ -1,0 +1,24 @@
+@use '@angular/material' as mat;
+
+.example-container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.example-sidenav-container {
+  flex: 1;
+}
+
+.ng-content {
+  flex: 1;
+  padding: 1rem;
+}
+
+.example-is-mobile .example-sidenav-container {
+  flex: 1 0 auto;
+}

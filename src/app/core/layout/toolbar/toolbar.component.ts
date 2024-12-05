@@ -8,12 +8,12 @@ import { ThemeService } from '@core/services/theme-service.service';
 import { ToggleButtonComponent } from '@shared/components/toggle-button/toggle-button.component';
 
 @Component({
-  selector: 'sidenav-toolbar',
+  selector: 'layout-toolbar',
   imports: [MatToolbarModule, MatButtonModule, MatIconModule, MatMenuModule, ToggleButtonComponent],
-  templateUrl: './sidenav-toolbar.component.html',
-  styleUrl: './sidenav-toolbar.component.scss',
+  templateUrl: './toolbar.component.html',
+  styleUrl: './toolbar.component.scss',
 })
-export class SidenavToolbarComponent {
+export class ToolbarComponent {
   @Output() menuClick = new EventEmitter<void>();
 
   xPosition: MenuPositionX = 'before';

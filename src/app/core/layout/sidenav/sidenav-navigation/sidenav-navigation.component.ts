@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatListModule } from '@angular/material/list';
 
 @Component({
   selector: 'sidenav-navigation',
-  imports: [MatToolbarModule, MatButtonModule, MatIconModule],
+  imports: [MatListModule],
   templateUrl: './sidenav-navigation.component.html',
   styleUrl: './sidenav-navigation.component.scss',
 })
-export class SidenavNavigationComponent {}
+export class SidenavNavigationComponent {
+  fillerNav = Array.from({ length: 25 }, (_, i) => `Nav Item ${i + 1}`);
+}

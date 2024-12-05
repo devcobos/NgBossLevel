@@ -1,23 +1,15 @@
-<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
-  <sidenav-toolbar (menuClick)="snav.toggle()" />
+<mat-sidenav-container class="example-sidenav-container">
+  <mat-sidenav
+    #snav
+    [mode]="mobileQuery.matches ? 'over' : 'side'"
+    [fixedInViewport]="mobileQuery.matches"
+    fixedTopGap="48.4"
+    class="example-sidenav"
+  >
+    <sidenav-navigation />
+  </mat-sidenav>
 
-  <mat-sidenav-container class="example-sidenav-container">
-    <mat-sidenav
-      #snav
-      [mode]="mobileQuery.matches ? 'over' : 'side'"
-      [fixedInViewport]="mobileQuery.matches"
-      fixedTopGap="48.4"
-      class="example-sidenav"
-    >
-      <mat-nav-list>
-        @for (nav of fillerNav; track nav) {
-        <a mat-list-item routerLink=".">{{ nav }}</a>
-        }
-      </mat-nav-list>
-    </mat-sidenav>
-
-    <mat-sidenav-content class="ng-content">
-      <ng-content />
-    </mat-sidenav-content>
-  </mat-sidenav-container>
-</div>
+  <mat-sidenav-content class="ng-content">
+    <ng-content />
+  </mat-sidenav-content>
+</mat-sidenav-container>
