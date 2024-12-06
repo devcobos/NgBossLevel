@@ -1,12 +1,22 @@
 import { Component } from '@angular/core';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIcon } from '@angular/material/icon';
 import { MatListModule, MatNavList } from '@angular/material/list';
 import { RouterModule } from '@angular/router';
 import { NavigationItem } from '@core/models/sidenav/navigation-items.model';
+import { NavigationBasicItemComponent } from './navigation-basic-item/navigation-basic-item.component';
 
 @Component({
   selector: 'sidenav-navigation',
-  imports: [RouterModule, MatNavList, MatIcon, MatListModule],
+  imports: [
+    RouterModule,
+    MatNavList,
+    MatIcon,
+    MatListModule,
+    MatExpansionModule,
+    NavigationBasicItemComponent,
+    NavigationBasicItemComponent,
+  ],
   templateUrl: './sidenav-navigation.component.html',
   styleUrl: './sidenav-navigation.component.scss',
 })

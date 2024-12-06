@@ -1,6 +1,11 @@
 .layout__container {
   display: flex;
   flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 .layout__toolbar {
@@ -8,7 +13,6 @@
   top: 0;
   left: 0;
   right: 0;
-  height: var(--toolbar-height); /* Altura dinámica basada en la variable */
   z-index: 2; /* Siempre encima de otros elementos */
   background-color: #fff; /* Ejemplo de color de fondo */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra opcional */
@@ -16,6 +20,7 @@
 
 .layout__sidenav {
   display: flex;
+  margin-top: var(--toolbar-height); /* Espaciado dinámico bajo el toolbar */
   flex: 1; /* Ocupa todo el espacio restante */
   overflow: hidden; /* Controla el desbordamiento */
 }
