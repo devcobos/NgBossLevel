@@ -1,5 +1,5 @@
 export type NavigationItem = {
-  icon: string;
+  icon?: string;
   label: string;
   route?: string;
   subItems: NavigationItem[];

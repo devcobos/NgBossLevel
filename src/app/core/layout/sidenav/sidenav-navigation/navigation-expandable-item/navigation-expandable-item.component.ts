@@ -1,23 +1,26 @@
 import { Component, Input } from '@angular/core';
-import { MatExpansionPanel, MatExpansionPanelHeader } from '@angular/material/expansion';
 import { MatIcon } from '@angular/material/icon';
-import { MatListItem, MatListModule } from '@angular/material/list';
-import { NavigationBasicItemComponent } from '@core/layout/sidenav/sidenav-navigation/navigation-basic-item/navigation-basic-item.component';
+import { MatListItem, MatListItemIcon, MatListItemTitle, MatNavList } from '@angular/material/list';
+import { RouterModule } from '@angular/router';
 import { NavigationItem } from '@core/models/sidenav/navigation-items.model';
 
 @Component({
   selector: 'navigation-expandable-item',
-  imports: [
-    MatExpansionPanel,
-    MatExpansionPanelHeader,
-    NavigationBasicItemComponent,
-    MatListItem,
-    MatIcon,
-    MatListModule,
-  ],
+  imports: [RouterModule, MatIcon, MatNavList, MatListItem, MatListItemIcon, MatListItemTitle],
   templateUrl: './navigation-expandable-item.component.html',
   styleUrl: './navigation-expandable-item.component.scss',
 })
 export class NavigationExpandableItemComponent {
-  @Input() item!: NavigationItem;
+  @Input() items!: NavigationItem[];
+
+  expandedIndex: number[] = [];
+
+  toggleSubItems(idx: number): void {
+    const expandedIdx = this.expandedIndex.indexOf(idx);
+    expandedIdx > -1 ? this.expandedIndex.splice(expandedIdx, 1) : this.expandedIndex.push(idx);
+  }
+
+  isExpanded(idx: number): boolean {
+    return this.expandedIndex.includes(idx);
+  }
 }

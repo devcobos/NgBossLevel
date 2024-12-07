@@ -9,6 +9,9 @@
     height: calc(100vh - var(--toolbar-height)); /* Ajusta al espacio disponible */
     overflow: auto; /* Habilita scroll si el contenido excede el espacio */
     flex-shrink: 0; /* Evita que se colapse */
+    &-navigation {
+      width: 100%;
+    }
   }
 
   &__content {
