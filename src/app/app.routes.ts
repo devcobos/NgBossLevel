@@ -18,6 +18,13 @@ export const ROUTES: Route[] = [
             (m) => m.ExampleMatCardsComponent,
           ),
       },
+      {
+        path: 'mat-badges',
+        loadComponent: () =>
+          import('@features/examples/example-mat-badges/example-mat-badges.component').then(
+            (m) => m.ExampleMatBadgesComponent,
+          ),
+      },
     ],
   },
   { path: '', redirectTo: '/examples/mat-buttons', pathMatch: 'full' },

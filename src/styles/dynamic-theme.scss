@@ -117,11 +117,23 @@ $dark-themes: (
   );
 }
 
+@mixin badge-overrides() {
+  @include mat.badge-overrides(
+    (
+      background-color: var(--mat-sys-tertiary),
+      text-color: var(--mat-sys-on-tertiary),
+      disabled-state-background-color: var(--mat-sys-tertiary),
+      disabled-state-text-color: var(--mat-sys-on-tertiary),
+    )
+  );
+}
+
 // Overrides comunes
 @mixin common-overrides() {
   @include toolbar-overrides();
   @include sidenav-overrides();
   @include scrollbar-overrides();
+  @include badge-overrides();
 }
 
 @mixin dynamic-theme() {

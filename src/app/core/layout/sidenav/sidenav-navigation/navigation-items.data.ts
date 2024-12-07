@@ -12,6 +12,10 @@ export const MockNavigationItems: NavigationItem[] = [
     label: 'Examples',
     subItems: [
       {
+        label: 'Badges',
+        route: '/examples/mat-badges',
+      },
+      {
         label: 'Buttons',
         route: '/examples/mat-buttons',
       },
