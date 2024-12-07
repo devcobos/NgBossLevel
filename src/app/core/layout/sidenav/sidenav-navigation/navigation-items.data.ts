@@ -4,25 +4,20 @@ export const MockNavigationItems: NavigationItem[] = [
   {
     icon: 'home',
     label: 'Home',
-    route: '/home',
+    route: '/',
     subItems: [],
   },
   {
-    icon: 'dashboard',
-    label: 'Dashboard',
-    route: '/dashboard',
+    icon: 'apps',
+    label: 'Examples',
     subItems: [
       {
-        icon: 'analytics',
-        label: 'Analytics',
-        route: '/dashboard/analytics',
-        subItems: [],
+        label: 'Buttons',
+        route: '/examples/mat-buttons',
       },
       {
-        icon: 'insights',
-        label: 'Insights',
-        route: '/dashboard/insights',
-        subItems: [],
+        label: 'Cards',
+        route: '/examples/mat-cards',
       },
     ],
   },
