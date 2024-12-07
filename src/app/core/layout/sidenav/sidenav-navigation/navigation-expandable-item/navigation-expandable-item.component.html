@@ -4,7 +4,7 @@
     @if (item?.subItems?.length) {
       <a mat-list-item class="nav-item" (click)="toggleSubItems(idx)">
         <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
-        <span matListItemTitle class="expand-item-title">
+        <span matListItemTitle class="expand-item-title" sharedNoSelectText>
           {{ item.label }}
           <mat-icon>{{ isExpanded(idx) ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</mat-icon>
         </span>
