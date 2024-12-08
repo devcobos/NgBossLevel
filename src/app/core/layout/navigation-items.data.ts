@@ -4,8 +4,7 @@ export const MockNavigationItems: NavigationItem[] = [
   {
     icon: 'home',
     label: 'Home',
-    route: '/',
-    subItems: [],
+    route: '/home',
   },
   {
     icon: 'apps',
@@ -31,16 +30,12 @@ export const MockNavigationItems: NavigationItem[] = [
     route: '/settings',
     subItems: [
       {
-        icon: 'account_circle',
         label: 'Profile',
         route: '/settings/profile',
-        subItems: [],
       },
       {
-        icon: 'security',
         label: 'Security',
         route: '/settings/security',
-        subItems: [],
       },
     ],
   },
@@ -50,16 +45,12 @@ export const MockNavigationItems: NavigationItem[] = [
     route: '/help',
     subItems: [
       {
-        icon: 'contact_support',
         label: 'Support',
         route: '/help/support',
-        subItems: [],
       },
       {
-        icon: 'info',
         label: 'About',
         route: '/help/about',
-        subItems: [],
       },
     ],
   },

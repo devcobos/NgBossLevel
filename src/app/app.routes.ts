@@ -2,6 +2,10 @@ import { Route } from '@angular/router';
 
 export const ROUTES: Route[] = [
   {
+    path: 'home',
+    loadComponent: () => import('@features/home/home.component').then((m) => m.HomeComponent),
+  },
+  {
     path: 'examples',
     children: [
       {
@@ -27,6 +31,7 @@ export const ROUTES: Route[] = [
       },
     ],
   },
-  { path: '', redirectTo: '/examples/mat-buttons', pathMatch: 'full' },
-  { path: '**', redirectTo: '/examples/mat-buttons' },
+
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '**', redirectTo: '/home' },
 ];

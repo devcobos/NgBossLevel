@@ -1,5 +1,5 @@
-<div class="layout__container" [class.layout-is-mobile]="getIsMobile">
-  <layout-toolbar class="layout__toolbar" (menuClick)="toggleSidenav()" />
+<div class="layout">
+  <vertical-toolbar class="layout__vertical-toolbar"></vertical-toolbar>
   <layout-sidenav class="layout__sidenav">
     <ng-content />
   </layout-sidenav>

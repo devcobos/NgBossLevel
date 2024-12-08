@@ -111,6 +111,7 @@ $dark-themes: (
 @mixin sidenav-overrides() {
   @include mat.sidenav-overrides(
     (
+      container-background-color: var(--mat-sys-surface-container-low),
       container-divider-color: var(--mat-sys-outline-variant),
       container-width: 300px,
     )
@@ -131,9 +132,9 @@ $dark-themes: (
 // Overrides comunes
 @mixin common-overrides() {
   @include toolbar-overrides();
-  @include sidenav-overrides();
   @include scrollbar-overrides();
   @include badge-overrides();
+  @include sidenav-overrides();
 }
 
 @mixin dynamic-theme() {

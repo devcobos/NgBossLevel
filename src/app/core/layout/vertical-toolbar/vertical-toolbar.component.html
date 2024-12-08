@@ -1,0 +1,24 @@
+<div class="vertical-toolbar">
+  <div class="vertical-toolbar__navigation-buttons"></div>
+  @for (item of navigationItems(); track $index; let idx = $index) {
+    <vertical-button [icon]="item.icon" [label]="item.label" (click)="handleNavigation(idx)" />
+  }
+  <div class="vertical-toolbar__last-buttons">
+    <button mat-icon-button aria-label="icon_toggle_dark_mode" [matMenuTriggerFor]="beforeMenu">
+      <mat-icon>format_color_fill</mat-icon>
+    </button>
+    <mat-menu #beforeMenu="matMenu" [yPosition]="yPosition" [xPosition]="xPosition">
+      @for (theme of avalibleThemes; track $index) {
+        <button mat-menu-item (click)="setTheme(theme)">{{ theme.displayableName }}</button>
+      }
+    </mat-menu>
+
+    <shared-toggle-button
+      label="dark-light-theme-toogle-button"
+      primaryIcon="dark_mode"
+      secondaryIcon="light_mode"
+      [isPrimary]="isDarkMode"
+      (toggle)="toggleDarkMode()"
+    />
+  </div>
+</div>

@@ -1,6 +1,12 @@
 export type NavigationItem = {
-  icon?: string;
+  icon: string;
   label: string;
   route?: string;
-  subItems?: NavigationItem[];
+  subItems?: NavigationSubItems[];
+};
+
+type NavigationSubItems = {
+  label: string;
+  route?: string;
+  subItems?: NavigationSubItems[];
 };

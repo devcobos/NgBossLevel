@@ -1,17 +1,11 @@
-<mat-sidenav-container class="sidenav-container">
+<mat-sidenav-container class="sidenav__container">
   <!-- Sidenav -->
-  <mat-sidenav
-    #snav
-    [mode]="getIsMobile ? 'over' : 'side'"
-    [fixedInViewport]="true"
-    fixedTopGap="48.4"
-    class="sidenav-container__sidenav"
-  >
-    <sidenav-navigation class="sidenav-container__sidenav-navigation" />
+  <mat-sidenav #snav [mode]="'side'" [opened]="isOpened" class="sidenav__sidenav">
+    <sidenav-navigation class="sidenav__navigation"></sidenav-navigation>
   </mat-sidenav>
 
   <!-- Contenido Principal -->
-  <mat-sidenav-content class="sidenav-container__content">
+  <mat-sidenav-content class="sidenav__content">
     <ng-content></ng-content>
   </mat-sidenav-content>
 </mat-sidenav-container>
