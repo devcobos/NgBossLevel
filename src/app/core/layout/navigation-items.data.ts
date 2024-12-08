@@ -1,6 +1,6 @@
 import { NavigationItem } from '@core/models/sidenav/navigation-items.model';
 
-export const MockNavigationItems: NavigationItem[] = [
+export const NAVIGATION_ITEM: NavigationItem[] = [
   {
     icon: 'home',
     label: 'Home',

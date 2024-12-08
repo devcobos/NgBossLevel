@@ -3,7 +3,7 @@
     @for (item of navigationItems; track $index; let idx = $index) {
       <vertical-button
         class="vertical-toolbar__navigation-buttons__button"
-        [icon]="item.icon"
+        [icon]="item.icon ?? ''"
         [label]="item.label"
         (click)="handleNavigation(item)"
       />
