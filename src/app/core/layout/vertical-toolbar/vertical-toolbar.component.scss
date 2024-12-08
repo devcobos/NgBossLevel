@@ -1,7 +1,7 @@
 .vertical-toolbar {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   height: 100%;
   z-index: 8;
   background-color: var(--mat-sys-surface-container-low);
@@ -9,8 +9,15 @@
   color: var(--mat-sys-on-surface);
   align-items: center;
 
+  &__navigation-buttons {
+    margin-top: 1rem;
+    &__button {
+    }
+  }
+
   &__last-buttons {
     display: flex;
     flex-direction: column;
+    margin-bottom: 1rem;
   }
 }

@@ -1,8 +1,9 @@
 import { Component, inject } from '@angular/core';
+import { MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { MatMenuModule, MenuPositionX, MenuPositionY } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { Router } from '@angular/router';
+import { NavigationItem } from '@core/models/sidenav/navigation-items.model';
 import { CustomTheme } from '@core/models/themes/theme.model';
 import { LayoutService } from '@core/services/layout.service';
 import { ThemeService } from '@core/services/theme-service.service';
@@ -11,18 +12,20 @@ import { VerticalButtonComponent } from '@shared/components/vertical-button/vert
 
 @Component({
   selector: 'layout-vertical-toolbar',
-  imports: [VerticalButtonComponent, MatToolbarModule, ToggleButtonComponent, MatMenuModule, MatIcon],
+  imports: [VerticalButtonComponent, MatToolbarModule, MatIconButton, ToggleButtonComponent, MatMenuModule, MatIcon],
   templateUrl: './vertical-toolbar.component.html',
   styleUrl: './vertical-toolbar.component.scss',
 })
 export class VerticalToolbarComponent {
   private readonly _layoutService = inject(LayoutService);
   private readonly _themeService = inject(ThemeService);
-  private readonly _router = inject(Router);
 
-  navigationItems = this._layoutService.getNavigationItems;
   xPosition: MenuPositionX = 'before';
   yPosition: MenuPositionY = 'below';
+
+  get navigationItems(): NavigationItem[] {
+    return this._layoutService.getNavigationItems;
+  }
 
   get isDarkMode(): boolean {
     return this._themeService.isDarkMode;
@@ -32,12 +35,8 @@ export class VerticalToolbarComponent {
     return this._themeService.getAvailableThemes;
   }
 
-  handleNavigation(idx: number): void {
-    const selectedItem = this.navigationItems()[idx];
-    this._layoutService.selectMenuIndex(idx);
-    if (!this._layoutService.hasSelectedMenuSubItems) {
-      this._router.navigate([selectedItem.route]); // Redirige a la ruta del ítem clicado
-    }
+  handleNavigation(item: NavigationItem): void {
+    this._layoutService.selectNavigationItem(item);
   }
 
   toggleDarkMode(): void {

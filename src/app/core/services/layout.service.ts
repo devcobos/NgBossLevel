@@ -1,17 +1,19 @@
 import { MediaMatcher } from '@angular/cdk/layout';
 import { effect, inject, Injectable, signal } from '@angular/core';
+import { Router } from '@angular/router';
 import { MockNavigationItems } from '@core/layout/navigation-items.data';
-import { NavigationItem } from '@core/models/sidenav/navigation-items.model';
+import { NavigationItem, NavigationSubItem } from '@core/models/sidenav/navigation-items.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LayoutService {
-  private readonly _menuItems = signal<NavigationItem[]>([]);
-  private readonly _isMobile = signal<boolean>(false);
-  private readonly _selectedMenuIndex = signal<number | null>(null);
-
+  private readonly _router = inject(Router);
   private readonly _media = inject(MediaMatcher);
+
+  private readonly _navigationItems = signal<NavigationItem[]>([]);
+  private readonly _isMobile = signal<boolean>(false);
+  private readonly _selectedItem = signal<NavigationItem | NavigationSubItem | null>(null);
 
   constructor() {
     // Inicializa la consulta de medios
@@ -23,7 +25,7 @@ export class LayoutService {
     updateIsMobile();
 
     effect(() => {
-      this._menuItems.set(MockNavigationItems);
+      this._navigationItems.set(MockNavigationItems);
     });
   }
 
@@ -33,24 +35,26 @@ export class LayoutService {
   }
 
   // Getter para obtener los elementos de navegación
-  get getNavigationItems() {
-    return this._menuItems;
+  get getNavigationItems(): NavigationItem[] {
+    return this._navigationItems();
   }
 
   // Getter para el índice seleccionado
-  get selectedMenuIndex() {
-    return this._selectedMenuIndex;
+  get getSelectedItem(): NavigationItem | NavigationSubItem | null {
+    return this._selectedItem();
   }
 
   // Getter para verificar si el índice seleccionado tiene subítems
-  get hasSelectedMenuSubItems(): boolean {
-    const selectedIndex = this._selectedMenuIndex();
-    if (selectedIndex === null) return false;
-    const selectedItem = this._menuItems()[selectedIndex];
-    return !!selectedItem?.subItems?.length;
+  get hasSelectedItemSubItems(): boolean {
+    const item = this.getSelectedItem;
+    if (item === null) return false;
+    return !!item?.subItems?.length;
   }
+
   // Método para seleccionar un índice
-  selectMenuIndex(index: number): void {
-    this._selectedMenuIndex.set(index);
+  selectNavigationItem(item: NavigationItem | NavigationSubItem): void {
+    this._selectedItem.set(item);
+    debugger;
+    if (!item?.subItems?.length) this._router.navigate([item.route]);
   }
 }

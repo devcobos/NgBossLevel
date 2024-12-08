@@ -19,7 +19,10 @@ export class SidenavComponent {
   }
 
   get isOpened() {
-    return this._layoutService.hasSelectedMenuSubItems;
+    if (this.isMobile) {
+    }
+
+    return this._layoutService.hasSelectedItemSubItems;
   }
 
   toggleSidenav() {
