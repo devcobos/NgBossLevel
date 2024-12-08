@@ -19,7 +19,7 @@ $palettes: (
 );
 
 // Configuración de densidad
-$density-config: -2;
+$density-config: -4;
 
 $light-themes: (
   'azure-blue': (
@@ -112,7 +112,6 @@ $dark-themes: (
   @include mat.sidenav-overrides(
     (
       container-background-color: var(--mat-sys-surface-container-low),
-      container-divider-color: var(--mat-sys-outline-variant),
       container-width: 200px,
     )
   );

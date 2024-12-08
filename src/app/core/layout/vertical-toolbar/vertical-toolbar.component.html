@@ -1,4 +1,4 @@
-<div class="vertical-toolbar">
+<div class="vertical-toolbar" [class.border-right]="isOpenSidenav">
   <div class="vertical-toolbar__navigation-buttons">
     @for (item of navigationItems; track $index; let idx = $index) {
       <vertical-button

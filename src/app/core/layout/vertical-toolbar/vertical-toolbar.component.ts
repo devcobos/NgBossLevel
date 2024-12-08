@@ -35,6 +35,10 @@ export class VerticalToolbarComponent {
     return this._themeService.getAvailableThemes;
   }
 
+  get isOpenSidenav() {
+    return this._layoutService.isOpenSidenav;
+  }
+
   handleNavigation(item: NavigationItem): void {
     this._layoutService.updateParentNavigation(item);
   }

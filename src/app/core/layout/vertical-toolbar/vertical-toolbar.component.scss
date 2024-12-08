@@ -6,7 +6,6 @@
   width: 100px;
   z-index: 8;
   background-color: var(--mat-sys-surface-container-low);
-  border-right: solid 1px var(--mat-sys-outline-variant, transparent);
   color: var(--mat-sys-on-surface);
   align-items: center;
 
@@ -21,4 +20,8 @@
     flex-direction: column;
     margin-bottom: 1rem;
   }
+}
+
+.border-right {
+  border-right: solid 1px #8080802a;
 }
