@@ -2,7 +2,7 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { effect, inject, Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { NAVIGATION_ITEM } from '@core/layout/navigation-items.data';
-import { NavigationItem } from '@core/models/sidenav/navigation-items.model';
+import { NavigationItem, NavigationSubItem, NavigationSubSubItem } from '@core/models/sidenav/navigation-items.model';
 
 @Injectable({
   providedIn: 'root',
@@ -12,14 +12,12 @@ export class LayoutService {
   private readonly _media = inject(MediaMatcher);
 
   private readonly _navigationItems = signal<NavigationItem[]>([]);
-  private readonly _isMobile = signal<boolean>(false);
-  private readonly _selectedState = signal<{
-    item: NavigationItem | null;
-    path: NavigationItem[];
-    level: number | null;
-  }>({ item: null, path: [], level: null });
+  private readonly _selectedParentNavigation = signal<NavigationItem>(NAVIGATION_ITEM[0]);
+  private readonly _selectedSubItemNavigation = signal<NavigationSubItem | null>(null);
+  private readonly _selectedSubSubItemNavigation = signal<NavigationSubSubItem | null>(null);
 
   private readonly _isOpenSidenav = signal<boolean>(false);
+  private readonly _isMobile = signal<boolean>(false);
 
   constructor() {
     const mobileQuery = this._media.matchMedia('(max-width: 600px)');
@@ -30,7 +28,6 @@ export class LayoutService {
 
     effect(() => {
       const items = NAVIGATION_ITEM;
-      this.initializeNavigationHierarchy(items);
       this._navigationItems.set(items);
     });
   }
@@ -39,16 +36,16 @@ export class LayoutService {
     return this._navigationItems();
   }
 
-  get selectedItem(): NavigationItem | null {
-    return this._selectedState().item;
+  get selectedParent(): NavigationItem {
+    return this._selectedParentNavigation();
   }
 
-  get selectedPath(): NavigationItem[] {
-    return this._selectedState().path;
+  get selectedSubItem(): NavigationSubItem | null {
+    return this._selectedSubItemNavigation();
   }
 
-  get selectedLevel(): number | null {
-    return this._selectedState().level;
+  get selectedSubSubItem(): NavigationSubSubItem | null {
+    return this._selectedSubSubItemNavigation();
   }
 
   get isMobile(): boolean {
@@ -59,59 +56,34 @@ export class LayoutService {
     return this._isOpenSidenav();
   }
 
-  get getTopLevelItem(): NavigationItem | null {
-    let currentItem = this._selectedState().item;
-
-    if (!currentItem) {
-      return null; // Si no hay elemento seleccionado, retorna null.
-    }
-
-    // Recorre hacia arriba hasta encontrar un elemento sin padre
-    while (currentItem.parent) {
-      currentItem = currentItem.parent;
-    }
-
-    return currentItem;
-  }
-
   // Método para seleccionar un ítem
-  selectNavigationItem(item: NavigationItem): void {
-    const path: NavigationItem[] = [];
-    let currentItem: NavigationItem | null = item;
-
-    while (currentItem) {
-      path.unshift(currentItem);
-      currentItem = currentItem.parent || null;
-    }
-
-    this._selectedState.set({
-      item,
-      path,
-      level: item.level || null,
-    });
+  updateParentNavigation(item: NavigationItem): void {
+    this._selectedParentNavigation.set(item);
 
     if (!item.subItems?.length) {
-      // Si toplevel no tiene subitems cerramos sidenav
-      if (!this.getTopLevelItem?.subItems?.length) {
-        this._isOpenSidenav.set(false);
-      }
+      this._selectedSubItemNavigation.set(null);
+      this._selectedSubSubItemNavigation.set(null);
+      this._isOpenSidenav.set(false);
       this._router.navigate([item.route]);
     } else {
       this._isOpenSidenav.set(true);
     }
   }
 
-  private initializeNavigationHierarchy(
-    items: NavigationItem[],
-    level: number = 0,
-    parent: NavigationItem | null = null,
-  ): void {
-    items.forEach((item) => {
-      item.level = level; // Asigna el nivel actual.
-      item.parent = parent || undefined; // Asigna el padre actual, si existe.
-      if (item.subItems) {
-        this.initializeNavigationHierarchy(item.subItems, level + 1, item); // Recurre para subitems.
-      }
-    });
+  updateSubItemNavigation(item: NavigationSubItem): void {
+    if (!item.subItems?.length) {
+      this._selectedSubItemNavigation.set(item);
+      this._selectedSubSubItemNavigation.set(null);
+      this._router.navigate([item.route]);
+    } else if (this.selectedSubItem === item) {
+      this._selectedSubItemNavigation.set(null);
+    } else {
+      this._selectedSubItemNavigation.set(item);
+    }
+  }
+
+  updateSubSubItemNavigation(item: NavigationSubSubItem): void {
+    this._selectedSubSubItemNavigation.set(item);
+    this._router.navigate([item.route]);
   }
 }

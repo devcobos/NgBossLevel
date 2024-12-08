@@ -50,7 +50,24 @@ export const NAVIGATION_ITEM: NavigationItem[] = [
       },
       {
         label: 'About',
-        route: '/help/about',
+        subItems: [
+          {
+            label: 'Support',
+            route: '/help/support',
+          },
+          {
+            label: 'About',
+            route: '/help/about',
+          },
+          {
+            label: 'Support',
+            route: '/help/support',
+          },
+          {
+            label: 'About',
+            route: '/help/about',
+          },
+        ],
       },
     ],
   },

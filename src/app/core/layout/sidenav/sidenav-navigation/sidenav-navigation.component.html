@@ -1,24 +1,26 @@
 <mat-nav-list class="nav-item-container">
-  @for (item of navigationItems; track item; let idx = $index) {
+  @for (item of navigationSubItems; track item; let idx = $index) {
     <!-- Item principal con subitems -->
     @if (item?.subItems?.length) {
-      <a mat-list-item class="nav-item">
-        <!-- <mat-icon matListItemIcon>{{ item.icon }}</mat-icon> -->
-        <span matListItemTitle class="expand-item-title" sharedNoSelectText>
+      <a mat-list-item class="nav-item" (click)="handleSubItemNavigation(item)">
+        <span matListItemTitle sharedNoSelectText class="expand-item-title">
           {{ item.label }}
-          <!-- <mat-icon>{{ isExpanded(idx) ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</mat-icon> -->
+          <mat-icon>
+            {{ selectedNavigationSubItems === item ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}
+          </mat-icon>
         </span>
       </a>
 
-      <!-- Subitems anidados -->
-      @for (subItem of item.subItems; track subItem) {
-        <a mat-list-item class="nav-item expandable-item">
-          <span matListItemTitle>{{ subItem.label }}</span>
-        </a>
+      @if (selectedNavigationSubItems === item) {
+        <!-- Subitems anidados -->
+        @for (subItem of item.subItems; track subItem) {
+          <a mat-list-item class="nav-item expandable-item">
+            <span matListItemTitle>{{ subItem.label }}</span>
+          </a>
+        }
       }
     } @else {
-      <a mat-list-item class="nav-item" (click)="handleNavigation(item)">
-        <!-- <mat-icon matListItemIcon>{{ item.icon }}</mat-icon> -->
+      <a mat-list-item class="nav-item" (click)="handleSubItemNavigation(item)">
         <span matListItemTitle sharedNoSelectText>{{ item.label }}</span>
       </a>
     }

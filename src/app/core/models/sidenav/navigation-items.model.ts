@@ -1,8 +1,17 @@
 export interface NavigationItem {
-  icon?: string; // Opcional, solo aplicable a elementos de nivel superior.
+  icon: string;
   label: string;
   route?: string;
-  subItems?: NavigationItem[]; // Los subitems usan el mismo modelo.
-  parent?: NavigationItem; // Referencia opcional al elemento padre.
-  level?: number; // Nivel jerárquico en la navegación.
+  subItems?: NavigationSubItem[];
+}
+
+export interface NavigationSubItem {
+  label: string;
+  route?: string;
+  subItems?: NavigationSubSubItem[];
+}
+
+export interface NavigationSubSubItem {
+  label: string;
+  route: string;
 }
