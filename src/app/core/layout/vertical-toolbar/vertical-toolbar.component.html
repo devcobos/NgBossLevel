@@ -7,6 +7,7 @@
         [label]="item.label"
         (click)="handleNavigation(item)"
       />
+      <br />
     }
   </div>
 
@@ -14,6 +15,8 @@
     <button mat-icon-button aria-label="icon_toggle_dark_mode" [matMenuTriggerFor]="beforeMenu">
       <mat-icon>format_color_fill</mat-icon>
     </button>
+
+    <br />
 
     <mat-menu #beforeMenu="matMenu" [yPosition]="yPosition" [xPosition]="xPosition">
       @for (theme of avalibleThemes; track $index) {
