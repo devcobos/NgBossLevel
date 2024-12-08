@@ -1,5 +1,9 @@
 <div class="layout">
-  <vertical-toolbar class="layout__vertical-toolbar"></vertical-toolbar>
+  @if (isMobile) {
+    <layout-toolbar />
+  } @else {
+    <layout-vertical-toolbar class="layout__vertical-toolbar" />
+  }
   <layout-sidenav class="layout__sidenav">
     <ng-content />
   </layout-sidenav>

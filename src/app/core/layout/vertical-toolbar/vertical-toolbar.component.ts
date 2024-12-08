@@ -10,7 +10,7 @@ import { ToggleButtonComponent } from '@shared/components/toggle-button/toggle-b
 import { VerticalButtonComponent } from '@shared/components/vertical-button/vertical-button.component';
 
 @Component({
-  selector: 'vertical-toolbar',
+  selector: 'layout-vertical-toolbar',
   imports: [VerticalButtonComponent, MatToolbarModule, ToggleButtonComponent, MatMenuModule, MatIcon],
   templateUrl: './vertical-toolbar.component.html',
   styleUrl: './vertical-toolbar.component.scss',
