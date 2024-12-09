@@ -40,7 +40,7 @@ export class VerticalToolbarComponent {
   }
 
   handleNavigation(item: NavigationItem): void {
-    this._layoutService.updateParentNavigation(item);
+    this._layoutService.updateParentNavigationItem(item);
   }
 
   toggleDarkMode(): void {

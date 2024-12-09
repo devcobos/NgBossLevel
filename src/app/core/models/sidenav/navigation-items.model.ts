@@ -2,16 +2,16 @@ export interface NavigationItem {
   icon: string;
   label: string;
   route?: string;
-  subItems?: NavigationSubItem[];
+  subItems?: SecondaryNavigationItem[];
 }
 
-export interface NavigationSubItem {
+export interface SecondaryNavigationItem {
   label: string;
   route?: string;
-  subItems?: NavigationSubSubItem[];
+  subItems?: TertiaryNavigationItem[];
 }
 
-export interface NavigationSubSubItem {
+export interface TertiaryNavigationItem {
   label: string;
   route: string;
 }

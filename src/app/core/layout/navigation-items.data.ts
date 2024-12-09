@@ -16,7 +16,10 @@ export const NAVIGATION_ITEM: NavigationItem[] = [
       },
       {
         label: 'Buttons',
-        route: '/examples/mat-buttons',
+        subItems: [
+          { label: 'MatButtons', route: '/examples/buttons/mat-buttons' },
+          { label: 'ToogleButton', route: '' },
+        ],
       },
       {
         label: 'Cards',

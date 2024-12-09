@@ -1,27 +1,32 @@
 <mat-nav-list class="nav-item-container">
-  @for (item of navigationSubItems; track item; let idx = $index) {
+  @for (secondaryItem of secondaryItems; track secondaryItem) {
     <!-- Item principal con subitems -->
-    @if (item?.subItems?.length) {
-      <a mat-list-item class="nav-item" (click)="handleSubItemNavigation(item)">
+    @if (secondaryItem?.subItems?.length) {
+      <a mat-list-item sharedNoSelectText class="nav-item" (click)="handleSecondaryNavigation(secondaryItem)">
         <span matListItemTitle sharedNoSelectText class="expand-item-title">
-          {{ item.label }}
+          {{ secondaryItem.label }}
           <mat-icon>
-            {{ selectedNavigationSubItems === item ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}
+            {{ selectedSecondaryItem === secondaryItem ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}
           </mat-icon>
         </span>
       </a>
 
-      @if (selectedNavigationSubItems === item) {
+      @if (selectedSecondaryItem === secondaryItem) {
         <!-- Subitems anidados -->
-        @for (subItem of item.subItems; track subItem) {
-          <a mat-list-item class="nav-item expandable-item">
-            <span matListItemTitle>{{ subItem.label }}</span>
+        @for (tertiaryItem of secondaryItem.subItems; track tertiaryItem) {
+          <a
+            mat-list-item
+            sharedNoSelectText
+            class="nav-item expandable-item"
+            (click)="handleTertiarityNavigation(tertiaryItem)"
+          >
+            <span matListItemTitle>{{ tertiaryItem.label }}</span>
           </a>
         }
       }
     } @else {
-      <a mat-list-item class="nav-item" (click)="handleSubItemNavigation(item)">
-        <span matListItemTitle sharedNoSelectText>{{ item.label }}</span>
+      <a mat-list-item sharedNoSelectText class="nav-item" (click)="handleSecondaryNavigation(secondaryItem)">
+        <span matListItemTitle>{{ secondaryItem.label }}</span>
       </a>
     }
   }

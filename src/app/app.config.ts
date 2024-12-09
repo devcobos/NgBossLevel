@@ -1,5 +1,5 @@
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { PreloadAllModules, provideRouter, withPreloading } from '@angular/router';
 
 import { provideHttpClient } from '@angular/common/http';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
@@ -8,8 +8,8 @@ import { ROUTES } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(ROUTES),
+    provideZoneChangeDetection({ eventCoalescing: true, runCoalescing: true }),
+    provideRouter(ROUTES, withPreloading(PreloadAllModules)),
     provideAnimationsAsync(),
     provideHttpClient(),
     provideMatIconCustomConfig(),

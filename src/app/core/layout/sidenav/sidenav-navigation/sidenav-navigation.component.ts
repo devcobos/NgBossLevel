@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import { MatListItem, MatListItemTitle, MatNavList } from '@angular/material/list';
-import { NavigationSubItem, NavigationSubSubItem } from '@core/models/sidenav/navigation-items.model';
+import { SecondaryNavigationItem, TertiaryNavigationItem } from '@core/models/sidenav/navigation-items.model';
 import { LayoutService } from '@core/services/layout.service';
 import { NoSelectTextDirective } from '@shared/directives/no-select-text.directive';
 
@@ -14,22 +14,18 @@ import { NoSelectTextDirective } from '@shared/directives/no-select-text.directi
 export class SidenavNavigationComponent {
   private readonly _layoutService = inject(LayoutService);
 
-  get navigationSubItems(): NavigationSubItem[] {
+  get secondaryItems(): SecondaryNavigationItem[] {
     return this._layoutService.selectedParent?.subItems ?? [];
   }
-  get selectedNavigationSubItems(): NavigationSubItem | null {
-    return this._layoutService.selectedSubItem ?? null;
+  get selectedSecondaryItem(): SecondaryNavigationItem | null {
+    return this._layoutService.selectedSecondaryItem ?? null;
   }
 
-  get isMobile() {
-    return this._layoutService.isMobile;
+  handleSecondaryNavigation(item: SecondaryNavigationItem): void {
+    this._layoutService.updateSecondaryNavigationItem(item);
   }
 
-  handleSubItemNavigation(item: NavigationSubItem): void {
-    this._layoutService.updateSubItemNavigation(item);
-  }
-
-  handleSubSubItemNavigation(item: NavigationSubSubItem): void {
-    this._layoutService.updateSubSubItemNavigation(item);
+  handleTertiarityNavigation(item: TertiaryNavigationItem): void {
+    this._layoutService.updateTertiaryItemNavigationItem(item);
   }
 }

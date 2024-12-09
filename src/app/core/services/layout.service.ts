@@ -2,7 +2,11 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { effect, inject, Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { NAVIGATION_ITEM } from '@core/layout/navigation-items.data';
-import { NavigationItem, NavigationSubItem, NavigationSubSubItem } from '@core/models/sidenav/navigation-items.model';
+import {
+  NavigationItem,
+  SecondaryNavigationItem,
+  TertiaryNavigationItem,
+} from '@core/models/sidenav/navigation-items.model';
 
 @Injectable({
   providedIn: 'root',
@@ -12,9 +16,10 @@ export class LayoutService {
   private readonly _media = inject(MediaMatcher);
 
   private readonly _navigationItems = signal<NavigationItem[]>([]);
-  private readonly _selectedParentNavigation = signal<NavigationItem>(NAVIGATION_ITEM[0]);
-  private readonly _selectedSubItemNavigation = signal<NavigationSubItem | null>(null);
-  private readonly _selectedSubSubItemNavigation = signal<NavigationSubSubItem | null>(null);
+  private readonly _selectedParentNavigationItem = signal<NavigationItem>(NAVIGATION_ITEM[0]);
+  private readonly _selectedSecondaryNavigationItem = signal<SecondaryNavigationItem | null>(null);
+  private readonly _selectedTertiaryNavigationItem = signal<TertiaryNavigationItem | null>(null);
+  private readonly _isFirstNavigation = signal<boolean>(true);
 
   private readonly _isOpenSidenav = signal<boolean>(false);
   private readonly _isMobile = signal<boolean>(false);
@@ -37,15 +42,15 @@ export class LayoutService {
   }
 
   get selectedParent(): NavigationItem {
-    return this._selectedParentNavigation();
+    return this._selectedParentNavigationItem();
   }
 
-  get selectedSubItem(): NavigationSubItem | null {
-    return this._selectedSubItemNavigation();
+  get selectedSecondaryItem(): SecondaryNavigationItem | null {
+    return this._selectedSecondaryNavigationItem();
   }
 
-  get selectedSubSubItem(): NavigationSubSubItem | null {
-    return this._selectedSubSubItemNavigation();
+  get selectedSubSubItem(): TertiaryNavigationItem | null {
+    return this._selectedTertiaryNavigationItem();
   }
 
   get isMobile(): boolean {
@@ -56,34 +61,46 @@ export class LayoutService {
     return this._isOpenSidenav();
   }
 
+  get isFirstNavigation(): boolean {
+    return this._isFirstNavigation();
+  }
+
+  markFirstNavigationComplete(): void {
+    this._isFirstNavigation.set(false);
+  }
+
   // Método para seleccionar un ítem
-  updateParentNavigation(item: NavigationItem): void {
-    this._selectedParentNavigation.set(item);
+  updateParentNavigationItem(item: NavigationItem): void {
+    this._selectedParentNavigationItem.set(item);
 
     if (!item.subItems?.length) {
-      this._selectedSubItemNavigation.set(null);
-      this._selectedSubSubItemNavigation.set(null);
+      this._selectedSecondaryNavigationItem.set(null);
+      this._selectedTertiaryNavigationItem.set(null);
       this._isOpenSidenav.set(false);
-      this._router.navigate([item.route]);
+      this.navigateToRoute(item.route);
     } else {
       this._isOpenSidenav.set(true);
     }
   }
 
-  updateSubItemNavigation(item: NavigationSubItem): void {
+  updateSecondaryNavigationItem(item: SecondaryNavigationItem): void {
     if (!item.subItems?.length) {
-      this._selectedSubItemNavigation.set(item);
-      this._selectedSubSubItemNavigation.set(null);
-      this._router.navigate([item.route]);
-    } else if (this.selectedSubItem === item) {
-      this._selectedSubItemNavigation.set(null);
+      this._selectedSecondaryNavigationItem.set(item);
+      this._selectedTertiaryNavigationItem.set(null);
+      this.navigateToRoute(item.route);
+    } else if (this.selectedSecondaryItem === item) {
+      this._selectedSecondaryNavigationItem.set(null);
     } else {
-      this._selectedSubItemNavigation.set(item);
+      this._selectedSecondaryNavigationItem.set(item);
     }
   }
 
-  updateSubSubItemNavigation(item: NavigationSubSubItem): void {
-    this._selectedSubSubItemNavigation.set(item);
-    this._router.navigate([item.route]);
+  updateTertiaryItemNavigationItem(item: TertiaryNavigationItem): void {
+    this._selectedTertiaryNavigationItem.set(item);
+    this.navigateToRoute(item.route);
+  }
+
+  private navigateToRoute(route: string | undefined): void {
+    if (!this.isFirstNavigation && route) this._router.navigate([route]);
   }
 }
