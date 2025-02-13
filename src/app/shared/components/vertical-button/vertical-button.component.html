@@ -1,6 +1,6 @@
-<div class="vertical-button" role="button" tabindex="0" (click)="onDivClick()">
-  <button mat-icon-button #iconButton>
+<div class="vertical-button" (click)="onDivClick()">
+  <button class="custom-icon-button" mat-icon-button>
     <mat-icon>{{ icon }}</mat-icon>
   </button>
-  <span sharedNoSelectText>{{ label }}</span>
+  <span class="button-label" sharedNoSelectText>{{ label }}</span>
 </div>
