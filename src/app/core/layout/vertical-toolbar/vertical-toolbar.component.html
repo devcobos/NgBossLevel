@@ -1,13 +1,12 @@
 <div class="vertical-toolbar" [class.border-right]="isOpenSidenav">
   <div class="vertical-toolbar__navigation-buttons">
     @for (item of navigationItems; track $index; let idx = $index) {
-      <vertical-button
-        class="vertical-toolbar__navigation-buttons__button"
-        [icon]="item.icon"
-        [label]="item.label"
-        (click)="handleNavigation(item)"
-      />
-      <br />
+    <vertical-button
+      class="vertical-toolbar__navigation-buttons__button"
+      [icon]="item.icon"
+      [label]="item.label"
+      (click)="handleNavigation(item)"
+    />
     }
   </div>
 
@@ -20,7 +19,7 @@
 
     <mat-menu #beforeMenu="matMenu" [yPosition]="yPosition" [xPosition]="xPosition">
       @for (theme of avalibleThemes; track $index) {
-        <button mat-menu-item (click)="setTheme(theme)">{{ theme.displayableName }}</button>
+      <button mat-menu-item (click)="setTheme(theme)">{{ theme.displayableName }}</button>
       }
     </mat-menu>
 

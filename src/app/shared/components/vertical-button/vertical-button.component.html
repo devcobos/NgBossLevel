@@ -1,6 +1,6 @@
-<div class="vertical-button" (click)="onDivClick()">
-  <button class="custom-icon-button" mat-icon-button>
+<div class="vertical-button" matRipple (click)="onDivClick()">
+  <span class="custom-icon-button" mat-icon-button>
     <mat-icon>{{ icon }}</mat-icon>
-  </button>
+  </span>
   <span class="button-label" sharedNoSelectText>{{ label }}</span>
 </div>
