@@ -64,7 +64,7 @@ export class LayoutGuard implements CanActivate {
    * Construye un array con la jerarquía de navegación para una ruta específica.
    */
   private getNavigationHierarchy(
-    route: string,
+    route: string
   ): (NavigationItem | SecondaryNavigationItem | TertiaryNavigationItem)[] | null {
     const hierarchy: (NavigationItem | SecondaryNavigationItem | TertiaryNavigationItem)[] = [];
 
@@ -91,7 +91,7 @@ export class LayoutGuard implements CanActivate {
   private findInSubItems(
     subItems: SecondaryNavigationItem[] | TertiaryNavigationItem[],
     route: string,
-    currentHierarchy: (NavigationItem | SecondaryNavigationItem | TertiaryNavigationItem)[],
+    currentHierarchy: (NavigationItem | SecondaryNavigationItem | TertiaryNavigationItem)[]
   ): (NavigationItem | SecondaryNavigationItem | TertiaryNavigationItem)[] | null {
     for (const subItem of subItems) {
       if (this.isRouteMatch(subItem, route)) {
@@ -113,7 +113,7 @@ export class LayoutGuard implements CanActivate {
    */
   private isRouteMatch(
     item: NavigationItem | SecondaryNavigationItem | TertiaryNavigationItem,
-    route: string,
+    route: string
   ): boolean {
     return item.route === route;
   }

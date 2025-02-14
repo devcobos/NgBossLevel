@@ -1,0 +1,13 @@
+.rickdex-characters-list {
+  display: flex;
+  justify-content: center;
+
+  border-radius: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.rickdex-characters-list-items {
+  margin: 0 0 1rem 0;
+}

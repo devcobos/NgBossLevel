@@ -1,0 +1,5 @@
+<div class="rickdex-characters-list">
+  @for (character of characters; track character.id) {
+  <rickdex-card-character class="rickdex-characters-list-items" [character]="character" />
+  }
+</div>

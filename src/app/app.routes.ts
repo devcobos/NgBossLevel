@@ -9,7 +9,7 @@ export const EXAMPLES_ROUTES: Route[] = [
         path: 'mat-buttons',
         loadComponent: () =>
           import('@features/examples/example-mat-buttons/example-mat-buttons.component').then(
-            (m) => m.ExampleMatButtonsComponent,
+            (m) => m.ExampleMatButtonsComponent
           ),
       },
     ],
@@ -18,15 +18,23 @@ export const EXAMPLES_ROUTES: Route[] = [
     path: 'mat-cards',
     loadComponent: () =>
       import('@features/examples/example-mat-cards/example-mat-cards.component').then(
-        (m) => m.ExampleMatCardsComponent,
+        (m) => m.ExampleMatCardsComponent
       ),
   },
   {
     path: 'mat-badges',
     loadComponent: () =>
       import('@features/examples/example-mat-badges/example-mat-badges.component').then(
-        (m) => m.ExampleMatBadgesComponent,
+        (m) => m.ExampleMatBadgesComponent
       ),
+  },
+];
+
+export const RICKDEX_ROUTES: Route[] = [
+  {
+    path: 'characters',
+    loadComponent: () =>
+      import('@features/rickdex/list-characters/list-characters.component').then((m) => m.ListCharactersComponent),
   },
 ];
 
@@ -35,6 +43,11 @@ export const ROUTES: Route[] = [
   {
     path: 'home',
     loadComponent: () => import('@features/home/home.component').then((m) => m.HomeComponent),
+    canActivate: [LayoutGuard],
+  },
+  {
+    path: 'rickdex',
+    children: RICKDEX_ROUTES,
     canActivate: [LayoutGuard],
   },
   {

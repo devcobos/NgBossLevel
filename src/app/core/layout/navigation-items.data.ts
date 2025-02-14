@@ -7,6 +7,16 @@ export const NAVIGATION_ITEM: NavigationItem[] = [
     route: '/home',
   },
   {
+    icon: 'planet',
+    label: 'RickDex',
+    subItems: [
+      {
+        label: 'Characters',
+        route: '/rickdex/characters',
+      },
+    ],
+  },
+  {
     icon: 'apps',
     label: 'Examples',
     subItems: [
