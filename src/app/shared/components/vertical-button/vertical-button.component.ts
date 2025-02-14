@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRippleModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
@@ -11,11 +11,5 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class VerticalButtonComponent {
   @Input({ required: true }) icon!: string;
-  @Input({ required: true }) label!: string;
-
-  @Output() click = new EventEmitter<void>();
-
-  onClick(): void {
-    this.click.emit();
-  }
+  @Input({ required: false }) label!: string;
 }

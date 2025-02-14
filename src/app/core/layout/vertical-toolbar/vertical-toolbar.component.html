@@ -11,11 +11,7 @@
   </div>
 
   <div class="vertical-toolbar__last-buttons">
-    <button mat-icon-button aria-label="icon_toggle_dark_mode" [matMenuTriggerFor]="beforeMenu">
-      <mat-icon>format_color_fill</mat-icon>
-    </button>
-
-    <br />
+    <vertical-button icon="format_color_fill" [matMenuTriggerFor]="beforeMenu" />
 
     <mat-menu #beforeMenu="matMenu" [yPosition]="yPosition" [xPosition]="xPosition">
       @for (theme of avalibleThemes; track $index) {
