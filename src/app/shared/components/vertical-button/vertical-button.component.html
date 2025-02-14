@@ -1,6 +1,4 @@
-<div class="vertical-button" matRipple (click)="onDivClick()">
-  <span class="custom-icon-button" mat-icon-button>
-    <mat-icon>{{ icon }}</mat-icon>
-  </span>
-  <span class="button-label" sharedNoSelectText>{{ label }}</span>
-</div>
+<button class="vertical-button" (click)="onClick()" [attr.aria-label]="label">
+  <mat-icon>{{ icon }}</mat-icon>
+  <span class="button-label">{{ label }}</span>
+</button>
