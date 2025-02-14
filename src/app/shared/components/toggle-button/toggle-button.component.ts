@@ -1,11 +1,9 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
 import { VerticalButtonComponent } from '@shared/components/vertical-button/vertical-button.component';
 
 @Component({
   selector: 'shared-toggle-button',
-  imports: [MatButtonModule, MatIconModule, VerticalButtonComponent],
+  imports: [VerticalButtonComponent],
   templateUrl: './toggle-button.component.html',
   styleUrls: ['./toggle-button.component.scss'],
 })

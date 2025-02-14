@@ -1,6 +1,4 @@
 import { Component, inject } from '@angular/core';
-import { MatIconButton } from '@angular/material/button';
-import { MatIcon } from '@angular/material/icon';
 import { MatMenuModule, MenuPositionX, MenuPositionY } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NavigationItem } from '@core/models/sidenav/navigation-items.model';
@@ -12,7 +10,7 @@ import { VerticalButtonComponent } from '@shared/components/vertical-button/vert
 
 @Component({
   selector: 'layout-vertical-toolbar',
-  imports: [VerticalButtonComponent, MatToolbarModule, MatIconButton, ToggleButtonComponent, MatMenuModule, MatIcon],
+  imports: [VerticalButtonComponent, MatToolbarModule, ToggleButtonComponent, MatMenuModule],
   templateUrl: './vertical-toolbar.component.html',
   styleUrl: './vertical-toolbar.component.scss',
 })
