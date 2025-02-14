@@ -13,7 +13,7 @@
       }
 
       &-text:hover {
-        color: #b03dc4;
+        color: var(--mat-sys-primary);
       }
     }
   }
@@ -31,7 +31,7 @@
       }
 
       &-text:hover {
-        color: #6ff1b1;
+        color: var(--mat-sys-tertiary);
       }
     }
   }
