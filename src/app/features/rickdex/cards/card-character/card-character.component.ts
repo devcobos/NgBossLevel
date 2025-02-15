@@ -24,7 +24,6 @@ export class RickDexCardCharacterComponent {
 
   protected onClickFirstSeen(idEpisode: number): void {
     if (idEpisode) {
-      debugger;
       this._router.navigate(['rickdex/episode', idEpisode]);
     }
   }
