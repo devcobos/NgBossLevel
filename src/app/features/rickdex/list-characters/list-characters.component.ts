@@ -1,12 +1,13 @@
 import { ScrollDispatcher } from '@angular/cdk/scrolling';
 import { ChangeDetectorRef, Component, inject } from '@angular/core';
+import { MatCard } from '@angular/material/card';
 import { Character, ListCharacterResponse } from '@core/interfaces/rickdex/rickdex.interfaces';
 import { CharacterService } from '@core/services/rickdex/character.service';
 import { RickDexCardCharacterComponent } from '@features/rickdex/cards/card-character/card-character.component';
 
 @Component({
   selector: 'list-characters',
-  imports: [RickDexCardCharacterComponent],
+  imports: [RickDexCardCharacterComponent, MatCard],
   templateUrl: './list-characters.component.html',
   styleUrl: './list-characters.component.scss',
 })
