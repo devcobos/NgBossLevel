@@ -1,5 +1,6 @@
 import { Route } from '@angular/router';
 import { LayoutGuard } from '@core/guards/layout.guard';
+import { RickDexEpisodeResolver } from '@core/resolvers/episode.resolvers';
 
 export const EXAMPLES_ROUTES: Route[] = [
   {
@@ -35,6 +36,12 @@ export const RICKDEX_ROUTES: Route[] = [
     path: 'characters',
     loadComponent: () =>
       import('@features/rickdex/list-characters/list-characters.component').then((m) => m.ListCharactersComponent),
+  },
+  {
+    path: 'episode/:idEpisode',
+    loadComponent: () =>
+      import('@features/rickdex/detail-episode/detail-episode.component').then((m) => m.DetailEpisodeComponent),
+    resolve: { episode: RickDexEpisodeResolver },
   },
 ];
 

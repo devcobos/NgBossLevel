@@ -18,19 +18,20 @@ export class RickDexCardCharacterComponent {
 
   protected onClickTitle(idCharacter: number): void {
     if (idCharacter) {
-      this._router.navigate(['/character', idCharacter]);
+      this._router.navigate(['rickdex/character', idCharacter]);
     }
   }
 
   protected onClickFirstSeen(idEpisode: number): void {
     if (idEpisode) {
-      this._router.navigate(['/episode', idEpisode]);
+      debugger;
+      this._router.navigate(['rickdex/episode', idEpisode]);
     }
   }
 
   protected onClickLastKnownLocation(idLocation: number): void {
     if (idLocation) {
-      this._router.navigate(['/location', idLocation]);
+      this._router.navigate(['rickdex/location', idLocation]);
     }
   }
 

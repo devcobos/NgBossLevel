@@ -1,0 +1,26 @@
+<mat-card noSelect class="rickdex-detail-episode-card">
+  <mat-card-header class="rickdex-detail-episode-card-header">
+    <mat-card-title class="rickdex-detail-episode-card-header-title">
+      <span class="rickdex-detail-episode-card-header-title-text" (click)="navigateToDetailEpisode(episode.id)">
+        {{ episode.episode }}: {{ episode.name }}
+      </span>
+    </mat-card-title>
+    <mat-card-subtitle class="rickdex-detail-episode-card-header-subtitle">
+      {{ episode.air_date }}
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content class="rickdex-detail-episode-card-content" *ngIf="loadCharacters">
+    <mat-divider />
+
+    <h2 style="margin-top: 1rem">Character seen in this episode:</h2>
+
+    <div class="rickdex-detail-episode-card-content-characters">
+      @for (character of episode.characters; track character.id) {
+      <rickdex-card-character
+        class="rickdex-detail-episode-card-content-characters-character"
+        [character]="character"
+      />
+      }
+    </div>
+  </mat-card-content>
+</mat-card>

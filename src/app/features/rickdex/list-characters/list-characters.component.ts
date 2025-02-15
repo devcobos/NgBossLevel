@@ -2,7 +2,7 @@ import { ScrollDispatcher } from '@angular/cdk/scrolling';
 import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { Character, ListCharacterResponse } from '@core/interfaces/rickdex/rickdex.interfaces';
 import { CharacterService } from '@core/services/rickdex/character.service';
-import { RickDexCardCharacterComponent } from '@features/rickdex/card-character/card-character.component';
+import { RickDexCardCharacterComponent } from '@features/rickdex/cards/card-character/card-character.component';
 
 @Component({
   selector: 'list-characters',
@@ -53,17 +53,5 @@ export class ListCharactersComponent {
     });
 
     this._ref.detectChanges();
-  }
-
-  protected onClickTitle(urlCharacter: string) {
-    console.log(urlCharacter);
-  }
-
-  protected onClickLastKnownLocation(urlLocation: string) {
-    console.log(urlLocation);
-  }
-
-  protected onClickFirstSeen(urlEpisode: string) {
-    console.log(urlEpisode);
   }
 }

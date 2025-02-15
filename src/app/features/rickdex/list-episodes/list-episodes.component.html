@@ -1,0 +1,23 @@
+<div class="rickdex-list-episodes">
+  <div class="rickdex-list-episodes-title">
+    <h1>Season {{ currentSeason }}</h1>
+  </div>
+  <mat-divider />
+  <div class="rickdex-list-episodes-content">
+    <div class="rickdex-list-episodes-items">
+      <rickdex-card-episode *ngFor="let episode of episodes" [episode]="episode" />
+    </div>
+  </div>
+  <mat-divider />
+  <div class="rickdex-list-episodes-actions">
+    @if (currentSeason != 1) {
+    <button mat-mini-fab color="primary" (click)="loadEpisodes((currentSeason = currentSeason - 1))">
+      <mat-icon>navigate_before</mat-icon>
+    </button>
+    } @else if (currentSeason < 5) {
+    <button mat-mini-fab color="primary" (click)="loadEpisodes((currentSeason = currentSeason + 1))">
+      <mat-icon fontIcon="navigate_next" />
+    </button>
+    }
+  </div>
+</div>
