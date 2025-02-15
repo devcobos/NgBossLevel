@@ -4,7 +4,7 @@
   &-header {
     &-title {
       font-weight: bold;
-      font-size: 1.25rem;
+      font-size: 1rem;
 
       &-text {
         color: inherit;
@@ -16,12 +16,15 @@
         color: var(--mat-sys-primary);
       }
     }
+    &-subtitle {
+      font-size: 0.8rem;
+    }
   }
 
   &-content {
     &-paragraph {
       color: #808080;
-      font-size: 0.9rem;
+      font-size: 0.75rem;
       display: flex;
       flex-direction: column;
       &-text {
