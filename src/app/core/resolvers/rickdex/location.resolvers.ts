@@ -3,7 +3,7 @@ import { ActivatedRouteSnapshot, ResolveFn, RouterStateSnapshot } from '@angular
 import { LocationInterface } from '@core/interfaces/rickdex/rickdex.interfaces';
 import { LocationService } from '@core/services/rickdex/location.service';
 
-export const locationResolver: ResolveFn<LocationInterface> = (
+export const RickDexLocationResolver: ResolveFn<LocationInterface> = (
   route: ActivatedRouteSnapshot,
   state: RouterStateSnapshot
 ) => {
