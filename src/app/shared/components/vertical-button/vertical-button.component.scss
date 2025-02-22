@@ -1,3 +1,6 @@
+.button-div {
+  border-radius: var(--mdc-fab-container-shape, var(--mat-sys-corner-large));
+}
 .vertical-button {
   all: unset; /* Elimina todos los estilos por defecto */
   display: flex;
